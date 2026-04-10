@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Pedidos e Contratos</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; padding: 30px; }
+        h2 { color: #333; border-bottom: 2px solid #007BFF; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #dee2e6; padding: 12px; text-align: left; }
+        th { background-color: #007BFF; color: white; text-transform: uppercase; font-size: 14px; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .status-badge { font-weight: bold; padding: 5px 10px; border-radius: 4px; font-size: 12px; }
+        .status-pendente { color: #856404; background: #fff3cd; }
+        .status-aprovado { color: #155724; background: #d4edda; }
+        a { color: #007BFF; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <h2>Gerenciamento de Aluguéis - Protótipo Sprint 03</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente (Contratante)</th>
+                <th>Veículo (Marca/Modelo)</th>
+                <th>Matrícula / Placa</th>
+                <th>Proprietário Legal</th>
+                <th>Agente (Banco/Crédito)</th>
+                <th>Status da Análise</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${pedidos}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.cliente.nome}"></td>
+                <td th:text="${p.carro.marca} + ' ' + ${p.carro.modelo}"></td>
+                <td th:text="${p.carro.matricula} + ' / ' + ${p.carro.placa}"></td>
+                <td th:text="${p.carro.proprietario}"></td>
+                <td th:text="${p.temContratoCredito ? p.bancoAgente : 'Sem Financiamento'}"></td>
+                <td>
+                    <span class="status-badge" 
+                          th:classappend="${p.status.contains('APROVADO') ? 'status-aprovado' : 'status-pendente'}"
+                          th:text="${p.status}">
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <a href="/">← Voltar para o Menu Principal</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Veículo</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 40px; }
+        .form-container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #007BFF; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registrar Novo Automóvel</h2>
+        <form th:action="@{/carros/salvar}" th:object="${carro}" method="post">
+            <input type="text" th:field="*{marca}" placeholder="Marca (Ex: Fiat)" required>
+            <input type="text" th:field="*{modelo}" placeholder="Modelo (Ex: Doblo)" required>
+            <input type="text" th:field="*{placa}" placeholder="Placa" required>
+            <input type="text" th:field="*{matricula}" placeholder="Matrícula/Chassi" required>
+            <input type="number" th:field="*{ano}" placeholder="Ano (Ex: 2023)" required>
+            
+            <label>Proprietário Legal:</label>
+            <select th:field="*{proprietario}">
+                <option value="EMPRESA">Empresa de Aluguel</option>
+                <option value="BANCO">Banco (Agente)</option>
+                <option value="CLIENTE">Cliente (Contratante)</option>
+            </select>
+
+            <button type="submit">Cadastrar Veículo</button>
+        </form>
+        <a href="/">Voltar ao Menu</a>
+    </div>
+</body>
+</html>

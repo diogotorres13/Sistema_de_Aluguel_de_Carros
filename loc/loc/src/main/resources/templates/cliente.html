@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro Cliente</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+        .box { width: 450px; margin: auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+        input, button { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { background: #007BFF; color: white; border: none; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>Cadastrar Cliente</h2>
+    <form th:action="@{/clientes/salvar}" method="post">
+        <input type="text" name="nome" placeholder="Nome Completo" required>
+        <input type="text" name="cpf" placeholder="CPF" required>
+        <input type="text" name="rg" placeholder="RG" required>
+        <input type="text" name="endereco" placeholder="Endereço">
+        <input type="text" name="profissao" placeholder="Profissão">
+        <input type="number" name="rendimento" step="0.01" placeholder="Rendimento Mensal">
+        <button type="submit">Salvar Cliente</button>
+    </form>
+    <a href="/">Voltar</a>
+</div>
+</body>
+</html>

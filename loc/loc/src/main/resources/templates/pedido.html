@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Pedido de Aluguel</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f7f6; padding: 40px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #333; text-align: center; border-bottom: 2px solid #28a745; padding-bottom: 10px; }
+        label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
+        input, select, button { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        .checkbox-group { margin-top: 20px; display: flex; align-items: center; }
+        .checkbox-group input { width: auto; margin-top: 0; margin-right: 10px; }
+        button { background-color: #28a745; color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 25px; transition: background 0.3s; }
+        button:hover { background-color: #218838; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #007BFF; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Solicitar Novo Aluguel</h2>
+    <form th:action="@{/pedidos/salvar}" th:object="${pedido}" method="post">
+        
+        <label>Contratante (Cliente):</label>
+        <select name="cliente.id" required>
+            <option value="">-- Selecione o Cliente --</option>
+            <option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nome} + ' (CPF: ' + ${c.cpf} + ')'"></option>
+        </select>
+
+        <label>Automóvel Desejado:</label>
+        <select name="carro.id" required>
+            <option value="">-- Selecione o Veículo --</option>
+            <option th:each="car : ${carros}" th:value="${car.id}" th:text="${car.marca} + ' ' + ${car.modelo} + ' [' + ${car.placa} + ']'"></option>
+        </select>
+
+        <label>Descrição Adicional/Observações:</label>
+        <input type="text" th:field="*{descricao}" placeholder="Ex: Aluguel para viagem de trabalho" required>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="credito" th:field="*{temContratoCredito}">
+            <label for="credito" style="margin-top: 0;">Possui Contrato de Crédito?</label>
+        </div>
+
+        <label>Banco Agente (se houver crédito):</label>
+        <input type="text" th:field="*{bancoAgente}" placeholder="Ex: Banco do Brasil, Itaú...">
+
+        <button type="submit">Enviar para Análise Financeira</button>
+    </form>
+    
+    <a href="/" class="back-link">Cancelar e Voltar</a>
+</div>
+
+</body>
+</html>

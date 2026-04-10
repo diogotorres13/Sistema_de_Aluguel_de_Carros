@@ -1,0 +1,13 @@
+com\locadora\loc\service\CarroService.class
+com\locadora\loc\model\Carro.class
+com\locadora\loc\service\PedidoService.class
+com\locadora\loc\repository\ClienteRepository.class
+com\locadora\loc\service\ClienteService.class
+com\locadora\loc\controller\PedidoController.class
+com\locadora\loc\repository\PedidoRepository.class
+com\locadora\loc\controller\WebController.class
+com\locadora\loc\model\Cliente.class
+com\locadora\loc\repository\CarroRepository.class
+com\locadora\loc\controller\ClienteController.class
+com\locadora\loc\LocApplication.class
+com\locadora\loc\model\Pedido.class
